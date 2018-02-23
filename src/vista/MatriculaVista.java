@@ -22,12 +22,31 @@ public class MatriculaVista {
 	
 	public void mostrarMatricula(Matricula matricula){
 		//conseguir la info de asignatura y alumno
-		AsignaturaModelo asignaturaModelo = new AsignaturaModelo();
-		Asignatura asignatura = asignaturaModelo.getAsignatura(matricula.getId_asignatura());
-		AlumnoModelo alumnoModelo = new AlumnoModelo();
-		Alumno alumno = alumnoModelo.getAlumno(matricula.getId_alumno());
-		
-		System.out.println(alumno.getNombre() + " : " + alumno.getDni() + " : " + asignatura.getNombre() + " : "
-				+ asignatura.getHoras() + " : " + matricula.getFecha());
+	
+		System.out.println(matricula.getAlumno().getNombre() + " : "
+				+ matricula.getAlumno().getDni()+ " : "
+				+ matricula.getAsignatura().getNombre()+ " : "
+				+ matricula.getAsignatura().getHoras()+ " : "
+				+ matricula.getFecha());
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
