@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 import modelo.Alumno;
 import modelo.AlumnoModelo;
-import modelo.Asignatura;
-import modelo.AsignaturaModelo;
 import modelo.Matricula;
 import modelo.MatriculaModelo;
 
