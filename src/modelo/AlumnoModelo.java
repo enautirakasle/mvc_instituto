@@ -3,6 +3,8 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class AlumnoModelo extends Conector{
 
@@ -27,5 +29,34 @@ public class AlumnoModelo extends Conector{
 		}
 		return null;
 	}
+
+	public ArrayList<Alumno> selectAllConMatriculas(){
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+		MatriculaModelo matriculaModelo = new MatriculaModelo();
+
+		try {
+			Statement st = super.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from alumnos");
+			while (rs.next()) {
+				Alumno alumno = new Alumno();
+				alumno.setId(rs.getInt("id"));
+				alumno.setNombre(rs.getString("nombre"));
+				alumno.setDni(rs.getString("dni"));
+				alumno.setEmail(rs.getString("email"));
+				ArrayList<Matricula> matriculas = matriculaModelo.getMatriculasConAsignatura(alumno);
+				alumno.setMatriculas(matriculas);
+
+				alumnos.add(alumno);
+			}
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return alumnos;
+	}
+	
+	
+
 
 }
