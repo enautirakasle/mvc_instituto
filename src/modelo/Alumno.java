@@ -8,8 +8,10 @@ public class Alumno {
 	private String nombre;
 	private String dni;
 	private String email;
+	
 	//por la relacion
 	private ArrayList<Matricula> matriculas;
+	private Provincia provincia;
 	
 	
 	public ArrayList<Matricula> getMatriculas() {
@@ -44,5 +46,11 @@ public class Alumno {
 		this.email = email;
 	}
 	
+	public Provincia getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
 	
 }
