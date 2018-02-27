@@ -55,6 +55,61 @@ public class AlumnoModelo extends Conector{
 		}
 		return alumnos;
 	}
+
+	
+	public ArrayList<Alumno> sellectAll() {
+		Statement st;
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+		
+		try {
+			st = super.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from alumnos join provincias on alumnos.id_provincia = provincias.id");
+			while(rs.next()){
+				Alumno alumno= new Alumno();
+				alumno.setId(rs.getInt("alumnos.id"));
+				alumno.setNombre(rs.getString("alumnos.nombre"));
+				alumno.setDni(rs.getString("dni"));
+				Provincia provincia = new Provincia();
+				provincia.setId(rs.getInt("provincias.id"));
+				provincia.setNombre(rs.getString("provincias.nombre"));
+				alumno.setProvincia(provincia);
+				
+				alumnos.add(alumno);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return alumnos;
+		
+		
+	}
+	
+	public ArrayList<Alumno> sellectAll2() {
+		Statement st;
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+		ProvinciaModelo provinciaModelo = new ProvinciaModelo();
+		
+		try {
+			st = super.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from alumnos");
+			while(rs.next()){
+				Alumno alumno= new Alumno();
+				alumno.setId(rs.getInt("id"));
+				alumno.setNombre(rs.getString("nombre"));
+				alumno.setDni(rs.getString("dni"));
+				alumno.setProvincia(provinciaModelo.get(rs.getInt("id_provincia")));
+				
+				alumnos.add(alumno);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return alumnos;
+		
+		
+	}
 	
 	
 

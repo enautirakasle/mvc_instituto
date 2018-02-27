@@ -14,6 +14,13 @@ public class Alumno {
 	private Provincia provincia;
 	
 	
+	
+	public Provincia getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
 	public ArrayList<Matricula> getMatriculas() {
 		return matriculas;
 	}
@@ -46,11 +53,6 @@ public class Alumno {
 		this.email = email;
 	}
 	
-	public Provincia getProvincia() {
-		return provincia;
-	}
-	public void setProvincia(Provincia provincia) {
-		this.provincia = provincia;
-	}
+	
 	
 }

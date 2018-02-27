@@ -12,12 +12,13 @@ import vista.MatriculaVista;
 public class MainMatriculas {
 
 	public static void main(String[] args) {
-		
-		MatriculaModelo matriculaModelo = new MatriculaModelo();
-		ArrayList<Matricula> matriculas = matriculaModelo.selectAll();
-		
-		MatriculaVista matriculaVista = new MatriculaVista();
-		matriculaVista.mostrarMatriculas(matriculas);
+		System.out.println("\033[34mEste texto es Azul");
+		System.out.println((char)27 + "[34;43mEjemplo de texto azul y fondo amarillo");
+//		MatriculaModelo matriculaModelo = new MatriculaModelo();
+//		ArrayList<Matricula> matriculas = matriculaModelo.selectAll();
+//		
+//		MatriculaVista matriculaVista = new MatriculaVista();
+//		matriculaVista.mostrarMatriculas(matriculas);
 		
 		
 //		MatriculaModelo matriculaModelo = new MatriculaModelo();
