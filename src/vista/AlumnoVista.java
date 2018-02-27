@@ -11,6 +11,7 @@ import modelo.Matricula;
 public class AlumnoVista {
 	public static final int ALUMNOS_MATRICULAS = 1;
 	public static final int LISTAR_ALUMNOS = 2;
+	public static final int LISTAR_ALUMNOS_CON_HORAS = 3;
 	public static final int SALIR = 0;
 	
 	public void menuAlumnos() {
@@ -25,6 +26,7 @@ public class AlumnoVista {
 			
 			System.out.println(ALUMNOS_MATRICULAS + " - alumnos con matriculas");
 			System.out.println(LISTAR_ALUMNOS + " - listar alumnos");
+			System.out.println(LISTAR_ALUMNOS_CON_HORAS + " - listar alumnos con horas matriculadas");
 			
 			System.out.println(SALIR + " - salir");
 			opcion = Integer.parseInt(scan.nextLine());
@@ -41,6 +43,10 @@ public class AlumnoVista {
 				this.mostrarAlumnos(alumnos);
 				
 				break;
+			case LISTAR_ALUMNOS_CON_HORAS:
+				alumnos = alumnoModelo.selectAllConMatriculas();
+				this.mostrarAlumnosConHorasMatriculadas(alumnos);
+				break;
 			default:
 				break;
 			}
@@ -49,6 +55,34 @@ public class AlumnoVista {
 
 	}
 
+	private void mostrarAlumnosConHorasMatriculadas(ArrayList<Alumno> alumnos) {
+		Iterator<Alumno> i = alumnos.iterator();
+		while(i.hasNext()){
+			Alumno alumno = i.next();
+			mostrarAlumnoConHorasMatriculadas(alumno);
+		}
+		
+	}
+
+	private void mostrarAlumnoConHorasMatriculadas(Alumno alumno) {
+		int horas = calcularHorasMatriculadas(alumno);
+		System.out.println(alumno.getNombre() + "\t" + alumno.getDni() + "\t" + horas);
+		
+		
+	}
+
+	private int calcularHorasMatriculadas(Alumno alumno) {
+		ArrayList<Matricula> matriculas = alumno.getMatriculas();
+		int horas =0;
+		Iterator<Matricula> i = matriculas.iterator();
+		while(i.hasNext()){
+			Matricula matricula = i.next();
+			horas = horas + matricula.getAsignatura().getHoras();
+		}
+		return horas;
+	}
+	
+	
 	private void mostrarAlumnos(ArrayList<Alumno> alumnos) {
 		Iterator<Alumno> i = alumnos.iterator();
 		while(i.hasNext()){
